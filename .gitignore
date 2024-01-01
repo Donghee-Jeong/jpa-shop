@@ -1,0 +1,26 @@
+# Specifies intentionally untracked files to ignore when using Gradle
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# Gradle
+build/
+.gradle/
+*.class
+
+# Ignore Gradle wrapper jar file
+gradle-wrapper.jar
+
+# Ignore IDE-specific files
+.idea/
+
+# Ignore Eclipse-specific files
+.classpath
+.project
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
