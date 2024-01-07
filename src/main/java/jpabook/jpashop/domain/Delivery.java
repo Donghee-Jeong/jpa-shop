@@ -21,4 +21,8 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
+
+    public boolean canCancel() {
+        return status != DeliveryStatus.COMP;
+    }
 }
