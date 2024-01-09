@@ -5,6 +5,8 @@ import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class OrderRepository {
@@ -19,5 +21,19 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-//    public List<Order> findAll(OrderSearch orderSearch) {}
+    public List<Order> findAll(OrderSearch orderSearch) {
+        String query = "select o from Order o join o.member m";
+
+        if (orderSearch.getOrderStatus() != null) {
+            query += (" where o.status = '" + orderSearch.getOrderStatus().name()) + "'";
+        }
+
+        if (orderSearch.getMemberName() != null) {
+            query += (" and m.name like '%" + orderSearch.getMemberName()) + "%'";
+        }
+
+        return em.createQuery(query, Order.class)
+                .setMaxResults(1000)
+                .getResultList();
+    }
 }
